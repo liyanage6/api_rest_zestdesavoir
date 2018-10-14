@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Theme
@@ -25,6 +26,7 @@ class Theme
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, unique=true)
+     * @Assert\NotBlank()
      */
     private $name;
 
@@ -32,8 +34,18 @@ class Theme
      * @var int
      *
      * @ORM\Column(name="value", type="integer")
+     * @Assert\NotBlank()
+     * @Assert\GreaterThan(value="-1")
+     * @Assert\LessThan(value="11")
      */
     private $value;
+
+    /**
+     * @var Place
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Place", inversedBy="themes")
+     */
+    private $place;
 
 
     /**
@@ -93,4 +105,21 @@ class Theme
     {
         return $this->value;
     }
+
+    /**
+     * @return Place
+     */
+    public function getPlace ()
+    {
+        return $this->place;
+    }
+
+    /**
+     * @param Place $place
+     */
+    public function setPlace ($place)
+    {
+        $this->place = $place;
+    }
+
 }

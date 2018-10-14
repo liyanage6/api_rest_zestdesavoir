@@ -13,3 +13,11 @@ users:
 prices:
     type:       rest
     resource:   "@AppBundle/Controller/Place/PriceController.php"
+
+themes:
+    type:       rest
+    resource:   "@AppBundle/Controller/Place/ThemeController.php"
+
+preferences:
+    type:       rest
+    resource:   "@AppBundle/Controller/User/PreferenceController.php"

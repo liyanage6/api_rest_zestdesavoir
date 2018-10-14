@@ -7,4 +7,5 @@ source: https://zestedesavoir.com/tutoriels/1280/creez-une-api-rest-avec-symfony
 
 Chapitre en cour :
 
-/** Tous droits réservés TP : Le clou du spectacle **/
+/** un pour récupérer les suggestions d’un utilisateur.
+ **/

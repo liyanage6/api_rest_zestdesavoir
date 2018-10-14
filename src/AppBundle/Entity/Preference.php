@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Preference
@@ -25,6 +26,7 @@ class Preference
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, unique=true)
+     * @Assert\NotBlank()
      */
     private $name;
 
@@ -32,8 +34,18 @@ class Preference
      * @var int
      *
      * @ORM\Column(name="value", type="integer")
+     * @Assert\NotBlank()
+     * @Assert\GreaterThan(value="-1")
+     * @Assert\LessThan(value="11")
      */
     private $value;
+
+    /**
+     * @var User
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="preferences")
+     */
+    private $user;
 
 
     /**
@@ -93,4 +105,21 @@ class Preference
     {
         return $this->value;
     }
+
+    /**
+     * @return User
+     */
+    public function getUser ()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param User $user
+     */
+    public function setUser ($user)
+    {
+        $this->user = $user;
+    }
+
 }

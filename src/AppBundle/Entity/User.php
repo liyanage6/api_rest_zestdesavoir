@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -46,7 +47,18 @@ class User
      */
     private $email;
 
+    /**
+     * @var Preference
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Preference", mappedBy="user")
+     */
+    private $preferences;
 
+
+    public function __construct ()
+    {
+        $this->preferences = new ArrayCollection();
+    }
     /**
      * Get id
      *
@@ -128,4 +140,21 @@ class User
     {
         return $this->firstname;
     }
+
+    /**
+     * @return Preference
+     */
+    public function getPreferences ()
+    {
+        return $this->preferences;
+    }
+
+    /**
+     * @param Preference $preferences
+     */
+    public function setPreferences ($preferences)
+    {
+        $this->preferences = $preferences;
+    }
+
 }
