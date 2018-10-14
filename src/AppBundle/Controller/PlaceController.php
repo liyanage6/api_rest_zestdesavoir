@@ -111,6 +111,12 @@ class PlaceController extends Controller
                     ->find($request->get('id'));
         /** @var $place Place */
 
+        $prices = $place->getPrices();
+
+        foreach ($prices as $price){
+            $em->remove($price);
+        }
+
         if ($place) {
             $em->remove($place);
             $em->flush();
