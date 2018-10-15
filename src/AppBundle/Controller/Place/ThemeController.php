@@ -16,6 +16,26 @@ class ThemeController extends Controller
     /**
      * @param Request $request
      *
+     * @Rest\Get("/places/{id}/themes")
+     * @Rest\View()
+     */
+    public function getPreferencesAction (Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $themes = $em->getRepository("AppBundle:Theme")->find($request->get('id'));
+        /** @var $place Place */
+
+        if (empty($place)) {
+            return View::create(["message" => "Preference not found"], Response::HTTP_NOT_FOUND);
+        }
+
+        return $place->getThemes();
+    }
+
+    /**
+     * @param Request $request
+     *
      * @Rest\View(statusCode=Response::HTTP_CREATED, serializerGroups={"theme"})
      * @Rest\Post("/places/{id}/themes")
      */

@@ -27,6 +27,7 @@ class Theme
      *
      * @ORM\Column(name="name", type="string", length=255, unique=true)
      * @Assert\NotBlank()
+     * @Assert\Choice(choices={"art", "sport", "histoire", "architecture", "science-fiction"}, message="La selection du theme n'est pas valide")
      */
     private $name;
 

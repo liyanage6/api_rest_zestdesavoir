@@ -21,3 +21,8 @@ themes:
 preferences:
     type:       rest
     resource:   "@AppBundle/Controller/User/PreferenceController.php"
+
+suggestions:
+    type:       rest
+    resource:   "@AppBundle/Controller/User/SuggestionController.php"
+
