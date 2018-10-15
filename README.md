@@ -7,5 +7,4 @@ source: https://zestedesavoir.com/tutoriels/1280/creez-une-api-rest-avec-symfony
 
 Chapitre en cour :
 
-/** un pour récupérer les suggestions d’un utilisateur.
- **/
+/** REST à son paroxysme  **/

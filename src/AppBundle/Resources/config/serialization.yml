@@ -2,24 +2,24 @@
 AppBundle\Entity\Place:
     attributes:
         id:
-            groups: ['place', 'price', 'theme', 'suggestion']
+            groups: ['place', 'price', 'theme']
         name:
-            groups: ['place', 'price', 'theme', 'suggestion']
+            groups: ['place', 'price', 'theme']
         address:
-            groups: ['place', 'price', 'theme', 'suggestion']
+            groups: ['place', 'price', 'theme']
         prices:
-            groups: ['place', 'theme', 'suggestion']
+            groups: ['place', 'theme']
         themes:
             groups: ['place']
 
 AppBundle\Entity\Price:
     attributes:
         id:
-            groups: ['place', 'price', 'suggestion']
+            groups: ['place', 'price']
         type:
-            groups: ['place', 'price', 'suggestion']
+            groups: ['place', 'price']
         value:
-            groups: ['place', 'price', 'suggestion']
+            groups: ['place', 'price']
         place:
             groups: ['price']
 
