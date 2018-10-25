@@ -2,8 +2,6 @@
 
 namespace AppBundle\Controller\User;
 
-use AppBundle\Entity\Preference;
-use AppBundle\Entity\Theme;
 use AppBundle\Entity\User;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\View\View;
@@ -51,9 +49,7 @@ class SuggestionController extends Controller
             }
         }
 
-//        dump($suggestions);die;
         return $suggestions;
-
     }
 
 }

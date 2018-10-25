@@ -7,4 +7,6 @@ source: https://zestedesavoir.com/tutoriels/1280/creez-une-api-rest-avec-symfony
 
 Chapitre en cour :
 
-/** REST à son paroxysme  **/
+/** 
+Login et mot de passe pour les utilisateurs
+ **/
