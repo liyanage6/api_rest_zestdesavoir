@@ -79,11 +79,16 @@ class UserController extends Controller
     public function postUsersAction (Request $request)
     {
         $user = new User();
-        $form = $this->createForm(UserType::class, $user);
+        $form = $this->createForm(UserType::class, $user, ['validation_groups' => ['Default', 'New']]);
 
         $form->submit($request->request->all());
 
         if ($form->isValid()) {
+            $encoder = $this->get('security.password_encoder');
+            // Le mot de passe en claire est encodé avant la sauvegarde
+            $encoded = $encoder->encodePassword($user, $user->getPlainPassword());
+            $user->setPassword($encoded);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
@@ -123,16 +128,29 @@ class UserController extends Controller
             ->find($request->get('id'));
         /** @var $user User */
 
-        $form = $this->createForm(UserType::class, $user);
+        if(empty($user)) {
+            return $this->userNotFound();
+        }
+
+        if ($clearMissing) { // Si une mise à jour complète, le mot de passe doit être validé
+            $option = ['validation_groups' => ['Default, FullUpdate']];
+        }
+        else {
+            $option = []; // Le groupe de validation par défaut de Symfony est Default
+        }
+
+        $form = $this->createForm(UserType::class, $user, $option);
 
         $form->submit($request->request->all(), $clearMissing);
 
-//        dump($user);die;
-        if (empty($user)) {
-            return View::create(['message' => 'Place Not Found'], Response::HTTP_NOT_FOUND);
-        }
-
         if ($form->isValid()){
+            //Si l'utilisateur veut changer son mot de passe
+            if (!empty($user->getPlainPassword())) {
+                $encoder = $this->get('security.password_encoder');
+                $encoded = $encoder->encodePassword($user, $user->getPlainPassword());
+                $user->setPassword($encoded);
+            }
+
             $em->merge($user);
             $em->flush();
 
@@ -141,5 +159,10 @@ class UserController extends Controller
         else {
             return $form;
         }
+    }
+
+    public function userNotFound()
+    {
+        return View::create(['message' => 'User not found '], Response::HTTP_NOT_FOUND);
     }
 }

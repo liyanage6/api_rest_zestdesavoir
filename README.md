@@ -8,5 +8,5 @@ source: https://zestedesavoir.com/tutoriels/1280/creez-une-api-rest-avec-symfony
 Chapitre en cour :
 
 /** 
-Login et mot de passe pour les utilisateurs
- **/
+Création d'un token
+**/
