@@ -8,6 +8,5 @@ source: https://zestedesavoir.com/tutoriels/1280/creez-une-api-rest-avec-symfony
 Chapitre en cour :
 
 /** 
-Création d'un token
-test
+La réponse contient un token que nous pourrons exploiter plus tard pour décliner notre identité.
 **/

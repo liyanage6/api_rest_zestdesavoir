@@ -26,3 +26,7 @@ suggestions:
     type:       rest
     resource:   "@AppBundle/Controller/User/SuggestionController.php"
 
+auth-tokens:
+    type:       rest
+    resource:   "@AppBundle/Controller/AuthTokenController.php"
+
